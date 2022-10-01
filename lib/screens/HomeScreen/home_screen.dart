@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:space_scraper/screens/Game1/landing_page_1.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,7 +49,14 @@ class HomeScreen extends StatelessWidget {
               RoundedGameButton(
                 name: "Name 1",
                 desc: "Description of Game 1",
-                onPressed: () {},
+                onPressed: () {
+                  print("helloo");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => LandingPage1(),
+                    ),
+                  );
+                },
               ),
               RoundedGameButton(
                 name: "Name 2",
@@ -71,7 +79,7 @@ class HomeScreen extends StatelessWidget {
 class RoundedGameButton extends StatelessWidget {
   final String name;
   final String desc;
-  final Function onPressed;
+  final Function() onPressed;
   const RoundedGameButton({
     super.key,
     required this.name,
@@ -84,9 +92,7 @@ class RoundedGameButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextButton(
-        onPressed: () {
-          return;
-        },
+        onPressed: onPressed,
         style: TextButton.styleFrom(
           backgroundColor: Color.fromARGB(255, 230, 226, 226),
           shape: RoundedRectangleBorder(
