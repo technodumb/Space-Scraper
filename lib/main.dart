@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 import 'controller/game_1_controller.dart';
+import 'controller/game_3_controller.dart';
 import 'screens/HomeScreen/home_screen.dart';
 
 void main() {
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => Game1Controller(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Game3Controller(),
         ),
       ],
     );
