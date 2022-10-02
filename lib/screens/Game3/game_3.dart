@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, unused_local_variable
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -5,15 +7,20 @@ import 'package:provider/provider.dart';
 import 'package:space_scraper/controller/game_3_controller.dart';
 import 'dart:ui';
 
+import 'final_page_3.dart';
+
 class Game3Page extends StatelessWidget {
-  const Game3Page({super.key});
+  final int qno;
+  const Game3Page({super.key, required this.qno});
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     Game3Controller _controller = Provider.of<Game3Controller>(context);
-    _controller.sc.addListener(_controller.getPosition);
+    _controller.sc[qno - 1].addListener(() => _controller.getPosition(qno - 1));
     Random random = Random();
     final offset = random.nextInt(4) - 2;
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -45,7 +52,7 @@ class Game3Page extends StatelessWidget {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              'assets/SpacePics/blur1.jpg',
+                              'assets/SpacePics/blur$qno.jpg',
                             ),
                             fit: BoxFit.contain,
                           ),
@@ -69,13 +76,13 @@ class Game3Page extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
-                      controller: _controller.sc,
+                      controller: _controller.sc[qno - 1],
                       scrollDirection: Axis.horizontal,
                       child: Container(
                         width: 1000,
                         height: 50,
                         // color: ,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -84,20 +91,64 @@ class Game3Page extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text("Scroll Wheel", style: TextStyle(color: Colors.white)),
-                  SizedBox(
+                  const Text("Scroll the Wheel to focus the image",
+                      style: TextStyle(color: Colors.white)),
+                  const SizedBox(
                     height: 20,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 235, 59),
+                      backgroundColor: const Color.fromARGB(255, 255, 235, 59),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
                     ),
                     onPressed: () {
                       if (_controller.position.abs() < 0.1) {
-                        print('Win');
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) {
+                            return SimpleDialog(
+                              children: [
+                                Icon(
+                                  Icons.check_circle_outline,
+                                  color: Colors.green,
+                                  size: 100,
+                                ),
+                                Center(
+                                  child: const Text(
+                                    "Correct",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 1, 58, 2),
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    if (qno == 4)
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => Game3Final(),
+                                        ),
+                                      );
+                                    else
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => Game3Page(
+                                            qno: qno + 1,
+                                          ),
+                                        ),
+                                      );
+                                  },
+                                  child: const Text("Next"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       }
                     },
                     child: Padding(

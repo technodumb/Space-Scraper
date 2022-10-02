@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class Game1Controller extends ChangeNotifier {
   bool _check = false;
   int _score = 0;
-  List<bool> _pieces = List.generate(7, (index) => false);
 
   List<String> webbpaths =
       List.generate(4, (index) => 'assets/images/webb/webb${index + 1}.jpg');
@@ -23,13 +22,6 @@ class Game1Controller extends ChangeNotifier {
   int get score => _score;
   void incrementScore() {
     _score++;
-    notifyListeners();
-  }
-
-  int get piecesLeft => _pieces.where((element) => element == false).length;
-  List<bool> get pieceStatus => _pieces;
-  void achievePiece(int pno) {
-    _pieces[pno] = true;
     notifyListeners();
   }
 }

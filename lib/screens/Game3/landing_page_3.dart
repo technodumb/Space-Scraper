@@ -12,7 +12,7 @@ class LandingPage3 extends StatelessWidget {
         body: Stack(
           children: [
             Image.asset(
-              'assets/SpacePics/game3walllow.jpg',
+              'assets/SpacePics/wall3.jpg',
               fit: BoxFit.cover,
               height: double.infinity,
             ),
@@ -20,7 +20,7 @@ class LandingPage3 extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "Game 3",
                     style: TextStyle(
                       color: Colors.white,
@@ -37,9 +37,14 @@ class LandingPage3 extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Game3Page()));
+                        MaterialPageRoute(
+                          builder: (context) => Game3Page(
+                            qno: 1,
+                          ),
+                        ),
+                      );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.chevron_right,
                       size: 100,
                       color: Colors.white,

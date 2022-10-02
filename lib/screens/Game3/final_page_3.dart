@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:space_scraper/controller/game_1_controller.dart';
+import 'package:space_scraper/controller/game_3_controller.dart';
 import 'package:space_scraper/controller/piece_controller.dart';
 
-class FinalScreen1 extends StatelessWidget {
-  FinalScreen1({super.key});
+class Game3Final extends StatelessWidget {
+  const Game3Final({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Game1Controller _controller = Provider.of<Game1Controller>(context);
+    final Game3Controller _controller = Provider.of<Game3Controller>(context);
     final PieceController _pcontroller = Provider.of<PieceController>(context);
     return SafeArea(
       child: WillPopScope(
