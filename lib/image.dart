@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
 
 class Imageblur extends StatelessWidget {
- 
-  final List<Image> myImages = List.generate(25, (index) => Image.asset('assets/SpacePics/${index + 1}_pic.jpg', fit: BoxFit.cover));
+  final List<Image> myImages = List.generate(
+      25,
+      (index) => Image.asset('assets/SpacePics/${index + 1}_pic.jpg',
+          fit: BoxFit.cover));
 
   final List<Padding> myImg = List.generate(
     25,

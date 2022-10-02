@@ -1,16 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:space_scraper/controller/game_1_controller.dart';
+import 'package:space_scraper/image.dart';
 import 'package:space_scraper/screens/Game1/landing_page_1.dart';
 import 'package:space_scraper/screens/Game3/landing_page_3.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Text("Space Scraper",
+                    style: TextStyle(fontSize: 30, color: Colors.white)),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+              ),
+              ListTile(
+                title: Text("Home"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.home,
+                ),
+              ),
+              ListTile(
+                title: Text("Gallery"),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Imageblur(),
+                    ),
+                  );
+                },
+                leading: Icon(
+                  Icons.image_sharp,
+                ),
+              ),
+              ListTile(
+                title: Text("About"),
+                onTap: () {},
+                leading: Icon(
+                  Icons.info,
+                ),
+              ),
+            ],
+          ),
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.black,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
