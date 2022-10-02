@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:space_scraper/controller/game_1_controller.dart';
 import 'package:space_scraper/screens/Game1/landing_page_1.dart';
+import 'package:space_scraper/screens/Game3/landing_page_3.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -47,10 +50,9 @@ class HomeScreen extends StatelessWidget {
                 height: 20,
               ),
               RoundedGameButton(
-                name: "Name 1",
-                desc: "Description of Game 1",
+                name: "Comparitor",
+                desc: "Find the 'James Webb' image.",
                 onPressed: () {
-                  print("helloo");
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => LandingPage1(),
@@ -59,14 +61,20 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               RoundedGameButton(
-                name: "Name 2",
-                desc: "Description of Game 1",
+                name: "The Origin",
+                desc: "Where it all began...",
                 onPressed: () {},
               ),
               RoundedGameButton(
-                name: "Name 3",
-                desc: "Description of Game 1",
-                onPressed: () {},
+                name: "Focus on Me",
+                desc: "Stare into the wild night sky. And stay focused.",
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => LandingPage3(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
